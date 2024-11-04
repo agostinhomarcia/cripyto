@@ -1,36 +1,23 @@
 import React from "react";
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { StatusBar } from "react-native";
 import { CryptoScreen } from "./src/screens/CryptoScreen";
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Crypto Market</Text>
-      </View>
+    <NavigationContainer>
       <StatusBar barStyle="dark-content" />
-      <CryptoScreen />
-    </SafeAreaView>
+      <Stack.Navigator
+        initialRouteName="CryptoList"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="CryptoList" component={CryptoScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    padding: 16,
-    backgroundColor: "#f8f9fa",
-    borderBottomWidth: 1,
-    borderBottomColor: "#e9ecef",
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#212529",
-    textAlign: "center",
-  },
-});
 
 export default App;

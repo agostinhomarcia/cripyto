@@ -13,7 +13,7 @@ import { CryptoDetailScreen } from "./CryptoDetailScreen";
 import { getCryptoData } from "../services/cryptoService";
 import { CryptoData } from "../types/crypto";
 
-export const CryptoScreen: React.FC = () => {
+export const CryptoScreen = () => {
   const [cryptos, setCryptos] = useState<CryptoData[]>([]);
   const [filteredCryptos, setFilteredCryptos] = useState<CryptoData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,10 +44,6 @@ export const CryptoScreen: React.FC = () => {
     setFilteredCryptos(filtered);
   };
 
-  const handleCryptoPress = (crypto: CryptoData) => {
-    setSelectedCrypto(crypto);
-  };
-
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -63,7 +59,7 @@ export const CryptoScreen: React.FC = () => {
         data={filteredCryptos}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleCryptoPress(item)}>
+          <TouchableOpacity onPress={() => setSelectedCrypto(item)}>
             <CryptoItem crypto={item} />
           </TouchableOpacity>
         )}

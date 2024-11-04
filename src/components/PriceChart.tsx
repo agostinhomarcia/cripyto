@@ -1,25 +1,25 @@
-import React from 'react';
-import { Dimensions } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
+import React from "react";
+import { Dimensions } from "react-native";
+import { LineChart } from "react-native-chart-kit";
 
 interface Props {
-  priceData: number[];
+  data: number[];
   color?: string;
 }
 
-export const PriceChart: React.FC<Props> = ({ priceData, color = '#2ecc71' }) => {
+export const PriceChart: React.FC<Props> = ({ data, color = "#2ecc71" }) => {
   return (
     <LineChart
       data={{
         labels: [],
-        datasets: [{ data: priceData }],
+        datasets: [{ data }],
       }}
-      width={Dimensions.get('window').width - 32}
+      width={Dimensions.get("window").width - 32}
       height={220}
       chartConfig={{
-        backgroundColor: '#fff',
-        backgroundGradientFrom: '#fff',
-        backgroundGradientTo: '#fff',
+        backgroundColor: "#fff",
+        backgroundGradientFrom: "#fff",
+        backgroundGradientTo: "#fff",
         decimalPlaces: 2,
         color: () => color,
         style: {
@@ -31,10 +31,6 @@ export const PriceChart: React.FC<Props> = ({ priceData, color = '#2ecc71' }) =>
         marginVertical: 8,
         borderRadius: 16,
       }}
-      withDots={false}
-      withInnerLines={false}
-      withOuterLines={false}
-      withHorizontalLabels={false}
     />
   );
-}; 
+};
